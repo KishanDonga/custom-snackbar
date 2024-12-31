@@ -30,7 +30,8 @@ class CustomSnackbar(private val context: Context) {
     private var duration: Int = Snackbar.LENGTH_SHORT
     private var drawable = GradientDrawable()
     private var message: String = ""
-    private var padding: Int = 0.toPx(context).toInt()
+    private var paddingHorizontal: Int = 0.toPx(context).toInt()
+    private var paddingBottom: Int = 0.toPx(context).toInt()
     private var customView: View? = null
     private var action: ((Snackbar) -> Unit)? = null
     private var customViewAction: ((View) -> Unit)? = null
@@ -83,11 +84,15 @@ class CustomSnackbar(private val context: Context) {
     }
 
     fun paddingRes(@DimenRes dimenId: Int) {
-        padding(context.resources.getDimension(dimenId).toInt())
+        paddingHorizontal(context.resources.getDimension(dimenId).toInt())
     }
 
-    fun padding(padding: Int) {
-        this.padding = padding
+    fun paddingHorizontal(padding: Int) {
+        this.paddingHorizontal = padding
+    }
+
+    fun paddingBottom(padding: Int) {
+        this.paddingBottom = padding
     }
 
     fun duration(duration: Int) {
@@ -195,8 +200,12 @@ class CustomSnackbar(private val context: Context) {
         snackContentLayout.setPadding(pLeft, 0, pRight, 0)
         snackContentLayout.background = drawable
 
-        if (padding > 0) {
-            snackbarLayout.setPadding(padding, 0, padding, padding)
+        if (paddingHorizontal > 0) {
+            snackbarLayout.setPadding(paddingHorizontal, 0, paddingHorizontal, 0)
+        }
+
+        if (paddingBottom > 0) {
+            snackbarLayout.setPadding(snackbarLayout.paddingLeft, 0, snackbarLayout.paddingRight, paddingBottom)
         }
 
         if (customView == null) {

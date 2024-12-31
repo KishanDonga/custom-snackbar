@@ -47,7 +47,7 @@ class CustomViewAct : AppCompatActivity() {
 
             snackbar = CustomSnackbar(this).show {
                 customView(R.layout.snack_layout)
-                padding(binding.sbPadding.progress)
+                paddingHorizontal(binding.sbPadding.progress)
                 duration(timeDuration)
                 withCustomView {
                     it.findViewById<View>(R.id.btnUndo).setOnClickListener {

@@ -73,6 +73,19 @@ class DrawableAct : AppCompatActivity() {
             }
         })
 
+        binding.sbPaddingBottom.setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+                binding.tvPaddingBottomIndicator.text = p0?.progress.toString()
+            }
+
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+            }
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+            }
+        })
+
         var snackbar: CustomSnackbar? = null
 
         binding.btnShow.setOnClickListener {
@@ -96,7 +109,8 @@ class DrawableAct : AppCompatActivity() {
                 actionTextColor(actionTxtColor)
                 textTypeface(typeface)
                 actionTypeface(typeface)
-                padding(binding.sbPadding.progress)
+                paddingHorizontal(binding.sbPadding.progress)
+                paddingBottom(binding.sbPaddingBottom.progress)
                 duration(timeDuration)
                 message("Testing Message...")
                 if (binding.rbWithAction.isChecked) {

@@ -95,6 +95,19 @@ class SimpleAct : AppCompatActivity() {
             }
         })
 
+        binding.content.sbPaddingBottom.setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+                binding.content.tvPaddingBottomIndicator.text = p0?.progress.toString()
+            }
+
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+            }
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+            }
+        })
+
         binding.content.sbCornerRadius.setOnSeekBarChangeListener(object :
             SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
@@ -150,7 +163,8 @@ class SimpleAct : AppCompatActivity() {
                 textColor(textColor)
                 backgroundColor(bgColor)
                 border(binding.content.sbBorderWidth.progress, borderColor)
-                padding(binding.content.sbPadding.progress)
+                paddingHorizontal(binding.content.sbPadding.progress)
+                paddingBottom(binding.content.sbPaddingBottom.progress)
                 cornerRadius(binding.content.sbCornerRadius.progress.toFloat())
                 duration(timeDuration)
                 actionTextColor(actionTxtColor)
